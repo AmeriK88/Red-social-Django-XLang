@@ -34,9 +34,11 @@ Para configurar y ejecutar el proyecto en tu entorno local, sigue estos pasos:
   Las contribuciones son bienvenidas.
 
 ## Imágenes
-![Captura de pantalla 2024-09-02 142656](https://github.com/user-attachments/assets/0ebc32f1-10e5-4772-8b89-961e2ad96fdf)
-![Captura de pantalla 2024-09-02 142631](https://github.com/user-attachments/assets/b4717b83-6475-48b9-bcb3-e0e46ece0ca0)
-![Captura de pantalla 2024-09-02 142618](https://github.com/user-attachments/assets/b78d2201-1e77-412f-9fb2-980636e0386a)
-![Captura de pantalla 2024-09-02 142558](https://github.com/user-attachments/assets/b787a273-d56d-4c7a-b825-b86b94a3f6e2)
-![Captura de pantalla 2024-09-02 142549](https://github.com/user-attachments/assets/7a4617ea-8ddf-4513-82e2-95387ff551c5)
-![Captura de pantalla 2024-09-02 142756](https://github.com/user-attachments/assets/941e937d-9e21-4a08-a3de-1015ee15bd48)
+![Captura de pantalla 2024-09-02 223939](https://github.com/user-attachments/assets/ed8aa946-f46a-4a68-af34-3d2e64ad8954)
+![Captura de pantalla 2024-09-02 223846](https://github.com/user-attachments/assets/a65d68af-fb5c-4b01-a27e-6706227c131f)
+![Captura de pantalla 2024-09-02 223828](https://github.com/user-attachments/assets/b2d2f180-36fe-4dc3-baa1-671b17ef5e85)
+![Captura de pantalla 2024-09-02 223809](https://github.com/user-attachments/assets/4559c801-d8ba-4501-8a8d-7adb6a45745c)
+![Captura de pantalla 2024-09-02 223755](https://github.com/user-attachments/assets/df312abf-1185-4ab4-b06f-716980dd5b2a)
+![Captura de pantalla 2024-09-02 223745](https://github.com/user-attachments/assets/129387db-d407-472e-9397-59287d5a817b)
+![Captura de pantalla 2024-09-02 223726](https://github.com/user-attachments/assets/677cf1dd-870f-4ce2-b1f7-8e18c27d9da7)
+
