@@ -32,3 +32,11 @@ Para configurar y ejecutar el proyecto en tu entorno local, sigue estos pasos:
   
 ## Contribuciones
   Las contribuciones son bienvenidas.
+
+## Imágenes
+![Captura de pantalla 2024-09-02 142656](https://github.com/user-attachments/assets/0ebc32f1-10e5-4772-8b89-961e2ad96fdf)
+![Captura de pantalla 2024-09-02 142631](https://github.com/user-attachments/assets/b4717b83-6475-48b9-bcb3-e0e46ece0ca0)
+![Captura de pantalla 2024-09-02 142618](https://github.com/user-attachments/assets/b78d2201-1e77-412f-9fb2-980636e0386a)
+![Captura de pantalla 2024-09-02 142558](https://github.com/user-attachments/assets/b787a273-d56d-4c7a-b825-b86b94a3f6e2)
+![Captura de pantalla 2024-09-02 142549](https://github.com/user-attachments/assets/7a4617ea-8ddf-4513-82e2-95387ff551c5)
+![Captura de pantalla 2024-09-02 142756](https://github.com/user-attachments/assets/941e937d-9e21-4a08-a3de-1015ee15bd48)
