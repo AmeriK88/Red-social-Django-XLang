@@ -1,4 +1,3 @@
-<!-- contacts/templates/contacts/search.html -->
 {% extends 'users/base.html' %}
 
 {% block title %}Search Users{% endblock %}
@@ -19,7 +18,10 @@
             <ul class="list-group">
                 {% for user in users %}
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        {{ user.username }}
+                        <div class="d-flex align-items-center">
+                            <img src="{{ user.profile_picture.url }}" alt="{{ user.username }}" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+                            <span>{{ user.username }}</span>
+                        </div>
                         <a href="{% url 'send_friend_request' user.id %}" class="btn btn-primary btn-sm">Send Friend Request</a>
                     </li>
                 {% endfor %}

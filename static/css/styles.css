@@ -1,5 +1,3 @@
-/* styles.css */
-
 /* General Body Styles */
 body {
     background-color: #f8f9fa;
@@ -113,4 +111,18 @@ body {
 
 .text-custom {
     color: #6c5b9a;
+}
+
+/* Profile pic style */
+.profile-picture {
+    max-width: 160px;
+    max-height: 160px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.miniature-profile-picture {
+    width: 50px; 
+    height: 50px;
+    border-radius: 50%;
 }
