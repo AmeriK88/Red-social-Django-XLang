@@ -1,0 +1,105 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<!-- Información del perfil -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">{{ user.first_name }}'s Profile</h4>
+                </div>
+               <!-- Solicitudes de amistad pendientes -->
+<h3 class="mt-5 mb-4">Friend Requests</h3>
+
+{% if pending_requests %}
+    <div class="row justify-content-center">
+        {% for request in pending_requests %}
+            <div class="col-md-12 col-lg-8"> <!-- Ocupa el 100% en pantallas medianas y más pequeñas -->
+                <div class="card mb-3 shadow-lg"> <!-- Sombra más pronunciada -->
+                    <div class="card-body d-flex align-items-center">
+                        <img src="{{ request.from_user.profile_picture.url }}" alt="{{ request.from_user.username }}" class="rounded-circle me-3" style="width: 60px; height: 60px;"> <!-- Imagen un poco más grande -->
+                        
+                        <!-- Información del usuario -->
+                        <div class="flex-grow-1">
+                            <h5 class="mb-1">{{ request.from_user.username }}</h5>
+                            <p class="text-muted mb-1">Sent {{ request.created_at|date:"M d, Y" }}</p>
+                        </div>
+
+                        <!-- Botones de acción -->
+                        <div>
+                            <a href="{% url 'accept_friend_request' request.id %}" class="btn btn-success btn-sm me-2">
+                                <i class="fas fa-check"></i> Accept
+                            </a>
+                            <a href="{% url 'reject_friend_request' request.id %}" class="btn btn-danger btn-sm">
+                                <i class="fas fa-times"></i> Reject
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="text-muted">No pending friend requests.</p>
+{% endif %}
+
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
+                        </div>
+                        <div class="col-md-8">
+                            <h5 class="card-title">{{ user.username }}</h5>
+                            <p class="card-text"><strong>Phone:</strong> {{ user.phone }}</p>
+                            <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+                            <p class="card-text"><strong>Languages to Learn:</strong> {{ user.languages_to_learn }}</p>
+                            <p class="card-text"><strong>Languages to Teach:</strong> {{ user.languages_to_teach }}</p>
+                            <p class="card-text"><strong>About:</strong> {{ user.about }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    {% if user == request.user %}
+                        <a href="{% url 'edit_profile' username=user.username %}" class="btn btn-primary">Edit Profile</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Posts del perfil -->
+    <h3 class="card-title mt-5 p-3 bg-custom text-white rounded shadow-sm">Posts</h3>
+    {% if posts %}
+        {% for post in posts %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <!-- Añadimos la foto de perfil y el nombre del usuario -->
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="{{ post.user.profile_picture.url }}" alt="{{ post.user.username }}" class="rounded-circle me-2" style="width: 50px; height: 50px;">
+                        <div>
+                            <h6 class="mb-0">{{ post.user.username }}</h6>
+                            <small class="text-muted">Posted on {{ post.created_at }}</small>
+                        </div>
+                    </div>
+                    
+                    <!-- Título y contenido de la publicación -->
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.content }}</p>
+                    
+                    <!-- Botones de acción -->
+                    {% if user == request.user %}
+                        <a href="{% url 'edit_post' post.pk %}" class="btn btn-secondary">Edit</a>
+                        <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No posts yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

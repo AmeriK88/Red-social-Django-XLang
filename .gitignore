@@ -1,0 +1,12 @@
+# Docs gitignore -
+db.sqlite3
+
+venv/
+
+media/
+
+staticfiles/
+
+__pycache__
+
+migrations/

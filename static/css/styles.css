@@ -1,0 +1,116 @@
+/* styles.css */
+
+/* General Body Styles */
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+    color: #343a40;
+}
+
+/* Navbar Styles */
+.navbar {
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #007bff 0%, #6610f2 100%);
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-link {
+    font-size: 16px;
+    color: #ffffff !important; /* Ensure link color is white */
+}
+
+.nav-link:hover {
+    color: #e9ecef !important; /* Light color for hover effect */
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+/* Button Styles */
+.btn {
+    border-radius: 25px; /* Rounded buttons */
+    padding: 10px 20px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Card Styles */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.card-header {
+    background: linear-gradient(135deg, #007bff, #6610f2);
+    color: #ffffff;
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    padding: 15px;
+}
+
+.card-footer {
+    background-color: #f1f1f1;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+/* Form Styles */
+.form-control {
+    border-radius: 5px;
+    border-color: #ced4da;
+    box-shadow: none;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+/* Alerts and Notifications */
+.alert {
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Custom Colors and Gradients */
+.bg-custom {
+    background: linear-gradient(90deg, #a8b1ff 0%, #1a3cfa 100%);
+}
+
+.text-custom {
+    color: #6c5b9a;
+}

@@ -1,0 +1,70 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Register</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_username" class="form-label">Username</label>
+                            {{ form.username|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_first_name" class="form-label">First Name</label>
+                            {{ form.first_name|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_last_name" class="form-label">Last Name</label>
+                            {{ form.last_name|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_phone" class="form-label">Phone</label>
+                            {{ form.phone|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_email" class="form-label">Email</label>
+                            {{ form.email|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_profile_picture" class="form-label">Profile Picture</label>
+                            {{ form.profile_picture|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_languages_to_learn" class="form-label">Languages to Learn</label>
+                            {{ form.languages_to_learn|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_languages_to_teach" class="form-label">Languages to Teach</label>
+                            {{ form.languages_to_teach|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_password1" class="form-label">Password</label>
+                            {{ form.password1|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_password2" class="form-label">Confirm Password</label>
+                            {{ form.password2|add_class:"form-control" }}
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <p>Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
