@@ -54,17 +54,22 @@ def home(request):
 
 @login_required
 def profile_view(request, username):
-    # Obtén el usuario basado en el username proporcionado en la URL
     user = get_object_or_404(CustomUser, username=username)
     
-    # Obtén las publicaciones del usuario ordenadas por fecha de creación
-    posts = Post.objects.filter(user=user).order_by('-created_at')
+    # Solo mostrar las solicitudes de amistad si el usuario está viendo su propio perfil
+    pending_requests = None
+    if user == request.user:
+        pending_requests = FriendshipRequest.objects.filter(to_user=request.user, accepted=False)
     
-    # Obtén las solicitudes de amistad pendientes
-    pending_requests = FriendshipRequest.objects.filter(to_user=user, accepted=False)
+    posts = Post.objects.filter(user=user)  # Ejemplo de obtención de publicaciones
     
-    # Pasa los datos al template
-    return render(request, 'users/profile.html', {'user': user, 'pending_requests': pending_requests, 'posts': posts})
+    context = {
+        'user': user,
+        'pending_requests': pending_requests,
+        'posts': posts,
+    }
+    
+    return render(request, 'users/profile.html', context)
 
 
 @login_required

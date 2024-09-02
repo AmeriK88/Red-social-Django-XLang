@@ -48,7 +48,7 @@ body {
 }
 
 .card-header {
-    background: linear-gradient(135deg, #007bff, #6610f2);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,22,121,1) 35%, rgba(0,212,255,1) 100%);
     color: #ffffff;
     border-bottom: none;
     border-radius: 10px 10px 0 0;
@@ -106,7 +106,8 @@ body {
 
 /* Custom Colors and Gradients */
 .bg-custom {
-    background: linear-gradient(90deg, #a8b1ff 0%, #1a3cfa 100%);
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,22,121,1) 35%, rgba(0,212,255,1) 100%);
 }
 
 .text-custom {
@@ -125,4 +126,20 @@ body {
     width: 50px; 
     height: 50px;
     border-radius: 50%;
+}
+
+
+/* Extra style responsive */
+@media (max-width: 992px) {
+    .navbar .form-control
+     {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .navbar .btn-post,
+     .btn-search {
+        width: 100%;
+        margin: 20px;
+        align-items: center;
+    }
 }

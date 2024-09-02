@@ -2,7 +2,7 @@
 
 {% block title %}My Contacts{% endblock %}
 
-{% block content %}
+    {% block content %}
 <div class="container mt-5">
     <h2 class="card-title p-3 bg-custom text-white rounded shadow-sm">My Contacts</h2>
     
@@ -11,9 +11,9 @@
             {% for contact in contacts %}
                 <div class="col-md-6 col-lg-4">
                     <div class="card mb-3 shadow-sm">
-                        <div class="card-body d-flex align-items-center">
+                        <div class="card-body d-flex flex-wrap align-items-center">
                             <!-- Imagen de perfil del contacto -->
-                            <img src="{{ contact.profile_picture.url }}" alt="{{ contact.username }}" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+                            <img src="{{ contact.profile_picture.url }}" alt="{{ contact.username }}" class="rounded-circle me-3 mb-2" style="width: 50px; height: 50px;">
                             
                             <!-- Información del contacto -->
                             <div class="flex-grow-1">
@@ -22,8 +22,8 @@
                             </div>
 
                             <!-- Botón de acción -->
-                            <div>
-                                <a href="{% url 'profile' contact.username %}" class="btn btn-info btn-sm">
+                            <div class="w-100 mt-2">
+                                <a href="{% url 'profile' contact.username %}" class="btn btn-info btn-sm w-100">
                                     <i class="fas fa-user"></i> View Profile
                                 </a>
                             </div>
@@ -37,3 +37,4 @@
     {% endif %}
 </div>
 {% endblock %}
+
