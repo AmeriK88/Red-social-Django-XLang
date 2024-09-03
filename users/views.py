@@ -46,7 +46,16 @@ def home(request):
     user = request.user
     user_posts = Post.objects.filter(user=user)
     friends = user.friends.all()
+    
+    # Depuración
+    print(f"User: {user.username}")
+    print(f"Friends: {friends}")
+
     friend_posts = Post.objects.filter(user__in=friends)
+
+    # Depuración
+    print(f"Friend Posts: {friend_posts}")
+
     posts = user_posts | friend_posts
     posts = posts.order_by('-created_at')
     return render(request, 'users/home.html', {'posts': posts})
