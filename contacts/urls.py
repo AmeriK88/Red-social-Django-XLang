@@ -9,4 +9,5 @@ urlpatterns = [
     path('accept_request/<int:request_id>/', accept_friend_request, name='accept_friend_request'),
     path('contacts/', views.contacts_list, name='contacts_list'),
     path('reject_friend_request/<int:request_id>/', views.reject_friend_request, name='reject_friend_request'),
+    path('remove_contact/<int:contact_id>/', views.remove_contact, name='remove_contact'),
 ]

@@ -6,20 +6,14 @@
 <div class="container mt-5">
     <div class="container">
         <h2 class="card-title mt-5 p-3 bg-custom text-white rounded shadow-sm">Search Users</h2>
-    </div>
-    
-    <form method="get" action="{% url 'search_users' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Search</button>
-    </form>
+    </div> 
     <div class="mt-4">
         {% if users %}
             <ul class="list-group">
                 {% for user in users %}
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div class="d-flex align-items-center">
-                            <img src="{{ user.profile_picture.url }}" alt="{{ user.username }}" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+                            <img src="{{ user.profile_picture.url }}" alt="{{ user.username }}" class="miniature-profile-picture m-3">
                             <span>{{ user.username }}</span>
                         </div>
                         <a href="{% url 'send_friend_request' user.id %}" class="btn btn-primary btn-sm">Send Friend Request</a>

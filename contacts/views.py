@@ -5,6 +5,9 @@ from .models import FriendshipRequest
 from .forms import UserSearchForm
 from django.contrib.auth import get_user_model
 from django.db.models import Q
+from django.contrib import messages
+
+
 
 @login_required
 def search_users(request):
@@ -38,6 +41,7 @@ def accept_friend_request(request, request_id):
 
 @login_required
 def contacts_list(request):
+    user_contacts = request.user.friends.all()
     # Obtener los contactos aceptados del usuario
     contacts = FriendshipRequest.objects.filter(
         (Q(from_user=request.user) | Q(to_user=request.user)),
@@ -58,8 +62,31 @@ def contacts_list(request):
 def reject_friend_request(request, request_id):
     friend_request = get_object_or_404(FriendshipRequest, id=request_id)
     
-    # Asegúrate de que solo la persona a la que se le envió la solicitud pueda rechazarla
+    # Asegurar que la persona que se envió solicitud pueda rechazarla
     if friend_request.to_user == request.user:
         friend_request.delete()
     
     return redirect('profile', username=request.user.username)
+
+@login_required
+def remove_contact(request, contact_id):
+    contact = get_object_or_404(get_user_model(), id=contact_id)
+    
+    if contact in request.user.friends.all():
+        # Eliminar el contacto de la lista de amigos
+        request.user.friends.remove(contact)
+        contact.friends.remove(request.user)
+        
+        # Eliminar cualquier solicitud de amistad pendiente
+        FriendshipRequest.objects.filter(
+            (Q(from_user=request.user, to_user=contact) | Q(from_user=contact, to_user=request.user))
+        ).delete()
+        
+        messages.success(request, f"{contact.username} has been removed from your contacts.")
+    else:
+        messages.error(request, f"{contact.username} is not in your contacts.")
+
+    return redirect('contacts_list')
+
+
+

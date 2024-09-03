@@ -46,16 +46,7 @@ def home(request):
     user = request.user
     user_posts = Post.objects.filter(user=user)
     friends = user.friends.all()
-    
-    # Depuración
-    print(f"User: {user.username}")
-    print(f"Friends: {friends}")
-
     friend_posts = Post.objects.filter(user__in=friends)
-
-    # Depuración
-    print(f"Friend Posts: {friend_posts}")
-
     posts = user_posts | friend_posts
     posts = posts.order_by('-created_at')
     return render(request, 'users/home.html', {'posts': posts})
@@ -64,14 +55,11 @@ def home(request):
 @login_required
 def profile_view(request, username):
     user = get_object_or_404(CustomUser, username=username)
-    
     # Solo mostrar las solicitudes de amistad si el usuario está viendo su propio perfil
     pending_requests = None
     if user == request.user:
         pending_requests = FriendshipRequest.objects.filter(to_user=request.user, accepted=False)
-    
-    posts = Post.objects.filter(user=user)  # Ejemplo de obtención de publicaciones
-    
+    posts = Post.objects.filter(user=user) 
     context = {
         'user': user,
         'pending_requests': pending_requests,
