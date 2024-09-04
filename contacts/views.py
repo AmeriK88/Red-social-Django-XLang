@@ -85,23 +85,28 @@ def reject_friend_request(request, request_id):
 
 @login_required
 def remove_contact(request, contact_id):
+    return redirect('confirm_remove_contact', contact_id=contact_id)
+
+
+@login_required
+def confirm_remove_contact(request, contact_id):
     contact = get_object_or_404(get_user_model(), id=contact_id)
     
-    if contact in request.user.friends.all():
-        # Eliminar el contacto de la lista de amigos
+    # Verifica si el contacto es realmente un amigo
+    if contact not in request.user.friends.all():
+        messages.error(request, f"{contact.username} is not in your contacts.")
+        return redirect('contacts_list')
+    
+    if request.method == 'POST':
+        # Elimina el contacto y las solicitudes de amistad
         request.user.friends.remove(contact)
         contact.friends.remove(request.user)
         
-        # Eliminar cualquier solicitud de amistad pendiente
         FriendshipRequest.objects.filter(
             (Q(from_user=request.user, to_user=contact) | Q(from_user=contact, to_user=request.user))
         ).delete()
         
         messages.success(request, f"{contact.username} has been removed from your contacts.")
-    else:
-        messages.error(request, f"{contact.username} is not in your contacts.")
-
-    return redirect('contacts_list')
-
-
-
+        return redirect('contacts_list')
+    
+    return render(request, 'contacts/confirm_remove_contact.html', {'contact': contact})

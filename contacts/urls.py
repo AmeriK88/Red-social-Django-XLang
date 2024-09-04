@@ -10,4 +10,5 @@ urlpatterns = [
     path('contacts/', views.contacts_list, name='contacts_list'),
     path('reject_friend_request/<int:request_id>/', views.reject_friend_request, name='reject_friend_request'),
     path('remove_contact/<int:contact_id>/', views.remove_contact, name='remove_contact'),
+    path('contacts/remove/<int:contact_id>/confirm/', views.confirm_remove_contact, name='confirm_remove_contact'),
 ]

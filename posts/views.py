@@ -43,11 +43,22 @@ def edit_post(request, pk):
 
 @login_required
 def delete_post(request, pk):
+    return redirect('confirm_delete_post', pk=pk)
+
+
+@login_required
+def confirm_delete_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    if post.user == request.user:
+    
+    # Verifica si el usuario tiene permiso para eliminar la publicación
+    if post.user != request.user:
+        messages.error(request, "You do not have permission to delete this post.")
+        return redirect('home')
+    
+    if request.method == 'POST':
         post.delete()
         messages.success(request, "Post deleted successfully.")
-    else:
-        messages.error(request, "You do not have permission to delete this post.")
-    return redirect('home')
+        return redirect('home')
+    
+    return render(request, 'posts/confirm_delete_post.html', {'post': post})
 

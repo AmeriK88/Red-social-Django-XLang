@@ -1,0 +1,21 @@
+{% extends 'users/base.html' %}
+
+{% block title %}Confirm Removal{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-warning text-white">
+            <h4>Confirm Removal</h4>
+        </div>
+        <div class="card-body">
+            <p>Are you sure you want to remove {{ contact.username }} from your contacts?</p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Yes, remove</button>
+                <a href="{% url 'contacts_list' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
