@@ -1,4 +1,3 @@
-# contacts/urls.py
 from django.urls import path
 from .views import search_users, send_friend_request, accept_friend_request
 from . import views

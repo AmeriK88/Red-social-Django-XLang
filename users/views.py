@@ -63,11 +63,18 @@ def home(request):
 def profile_view(request, username):
     user = get_object_or_404(CustomUser, username=username)
     pending_requests = None
+
     if user == request.user:
         pending_requests = FriendshipRequest.objects.filter(to_user=request.user, accepted=False)
         if pending_requests.exists():
-            messages.info(request, "You have {} pending friend requests.".format(pending_requests.count()))
+            messages.info(request, f"You have {pending_requests.count()} pending friend requests.")
+
     posts = Post.objects.filter(user=user)
+
+    # Añadir un atributo 'user_has_liked' a cada post en la lista de posts
+    for post in posts:
+        post.user_has_liked = post.likes.filter(id=request.user.id).exists()
+
     context = {
         'user': user,
         'pending_requests': pending_requests,
@@ -75,6 +82,7 @@ def profile_view(request, username):
     }
     
     return render(request, 'users/profile.html', context)
+
 
 
 @login_required
