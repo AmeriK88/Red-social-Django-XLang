@@ -13,7 +13,7 @@
                     <h4 class="mb-0">Register</h4>
                 </div>
                 <div class="card-body">
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="mb-3">
                             <label for="id_username" class="form-label">Username</label>

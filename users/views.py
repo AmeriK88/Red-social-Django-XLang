@@ -7,6 +7,7 @@ from django.http import HttpResponseForbidden
 from .models import CustomUser
 from contacts.models import FriendshipRequest
 from posts.models import Post
+from django.contrib import messages
 
 
 def register(request):
@@ -14,11 +15,11 @@ def register(request):
         form = CustomUserCreationForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
-            print(f"User {user.username} registered successfully.")
-            login(request, user)  # Auto-login the user after registration
+            login(request, user)
+            messages.success(request, "Registration successful. Welcome, {}!".format(user.username))
             return redirect('home')
         else:
-            print(form.errors)  # Print form errors for debugging
+            messages.error(request, "There was an error with your registration. Please check the form and try again.")
     else:
         form = CustomUserCreationForm()
     return render(request, 'users/register.html', {'form': form})
@@ -29,16 +30,22 @@ def login_view(request):
         form = CustomAuthenticationForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
-            auth_login(request, user) 
-            return redirect('home')  # Asegúrate de que 'home' es el nombre de la vista correcta
+            auth_login(request, user)
+            messages.success(request, "Welcome back, {}!".format(user.username))
+            return redirect('home')
+        else:
+            messages.error(request, "Invalid username or password. Please try again.")
     else:
         form = CustomAuthenticationForm()
     return render(request, 'users/login.html', {'form': form})
 
+
 @login_required
 def logout_view(request):
     auth_logout(request)
+    messages.info(request, "You have been logged out.")
     return redirect('login')
+
 
 
 @login_required
@@ -55,11 +62,12 @@ def home(request):
 @login_required
 def profile_view(request, username):
     user = get_object_or_404(CustomUser, username=username)
-    # Solo mostrar las solicitudes de amistad si el usuario está viendo su propio perfil
     pending_requests = None
     if user == request.user:
         pending_requests = FriendshipRequest.objects.filter(to_user=request.user, accepted=False)
-    posts = Post.objects.filter(user=user) 
+        if pending_requests.exists():
+            messages.info(request, "You have {} pending friend requests.".format(pending_requests.count()))
+    posts = Post.objects.filter(user=user)
     context = {
         'user': user,
         'pending_requests': pending_requests,
@@ -73,22 +81,20 @@ def profile_view(request, username):
 def edit_profile(request, username):
     user = get_object_or_404(CustomUser, username=username)
 
-    # Verifica si el usuario actual es el propietario del perfil
     if request.user != user:
+        messages.error(request, "You are not allowed to edit this profile.")
         return HttpResponseForbidden("You are not allowed to edit this profile.")
     
     if request.method == 'POST':
         form = ProfileUpdateForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
+            messages.success(request, "Profile updated successfully.")
             return redirect('profile', username=user.username)
+        else:
+            messages.error(request, "There was an error updating your profile. Please try again.")
     else:
         form = ProfileUpdateForm(instance=user)
     
     return render(request, 'users/edit_profile.html', {'form': form, 'user': user})
-
-
-
-
-
 
