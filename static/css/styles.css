@@ -117,22 +117,22 @@ body {
 
 /* Profile pic style */
 .profile-picture {
-    max-width: 160px;
-    max-height: 160px;
+    max-width: 180px;
+    max-height: 180px;
     object-fit: cover;
     border-radius: 25px;
+    border: 1px solid black;
 }
 
 .miniature-profile-picture {
-    width: 60px; 
-    height: 60px;
+    width: 80px; 
+    height: 80px;
     border-radius: 50%;
+    object-fit:inherit;
+    background-color: #f0f0f0; /* color de fondo para mejorar la estética */
     background-size: cover;
-}
-
-.post-picture {
-    max-height: 680px;
-    max-width: 680px;
+    background-position: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Extra style responsive */
