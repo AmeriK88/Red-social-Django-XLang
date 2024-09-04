@@ -130,6 +130,10 @@ body {
     background-size: cover;
 }
 
+.post-picture {
+    max-height: 680px;
+    max-width: 680px;
+}
 
 /* Extra style responsive */
 @media (max-width: 992px) {

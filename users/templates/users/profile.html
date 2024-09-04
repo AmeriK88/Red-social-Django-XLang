@@ -97,6 +97,18 @@
                     <h5 class="card-title">{{ post.title }}</h5>
                     <p class="card-text">{{ post.content }}</p>
                     
+                    <!-- Mostrar imagen si está disponible -->
+                    {% if post.image %}
+                    <div class="image-container mb-3">
+                        <img src="{{ post.image.url }}" alt="Post Image" class="img-fluid rounded shadow-sm">
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Mostrar enlace si está disponible -->
+                    {% if post.link %}
+                        <a href="{{ post.link }}" target="_blank" class="btn btn-primary">View Link</a>
+                    {% endif %}
+                    
                     <!-- Botones de acción -->
                     {% if user == request.user %}
                         <a href="{% url 'edit_post' post.pk %}" class="btn btn-secondary">Edit</a>
