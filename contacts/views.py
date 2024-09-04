@@ -1,12 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseForbidden
 from .models import FriendshipRequest
 from .forms import UserSearchForm
 from django.contrib.auth import get_user_model
 from django.db.models import Q
 from django.contrib import messages
-
 
 
 @login_required
@@ -18,11 +16,28 @@ def search_users(request):
 @login_required
 def send_friend_request(request, user_id):
     to_user = get_object_or_404(get_user_model(), id=user_id)
+    
     if to_user == request.user:
-        return HttpResponseForbidden("You cannot send a friend request to yourself.")
-    if not FriendshipRequest.objects.filter(from_user=request.user, to_user=to_user).exists():
+        messages.error(request, "You cannot send a friend request to yourself.")
+        return redirect('search_users')
+    
+    # Verificar si ya son amigos
+    if request.user.friends.filter(id=to_user.id).exists():
+        messages.warning(request, "You are already friends with this user.")
+        return redirect('search_users')
+    
+    # Verificar si ya existe una solicitud de amistad en cualquier dirección
+    if FriendshipRequest.objects.filter(
+        Q(from_user=request.user, to_user=to_user) | 
+        Q(from_user=to_user, to_user=request.user)
+    ).exists():
+        messages.warning(request, "A friend request already exists between you and this user.")
+    else:
         FriendshipRequest.objects.create(from_user=request.user, to_user=to_user)
+        messages.success(request, f"Friend request sent to {to_user.username}!")
+    
     return redirect('search_users')
+
 
 @login_required
 def accept_friend_request(request, request_id):

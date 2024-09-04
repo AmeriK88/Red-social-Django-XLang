@@ -99,7 +99,8 @@ body {
     color: #155724;
 }
 
-.alert-danger {
+.alert-danger,
+.alert-error {
     background-color: #f8d7da;
     color: #721c24;
 }

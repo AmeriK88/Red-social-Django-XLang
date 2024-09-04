@@ -71,7 +71,7 @@
     {% if messages %}
     <div class="container mt-3">
         {% for message in messages %}
-            <div class="alert text-center {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}" role="alert">
+            <div class="alert text-center {% if message.tags %}alert-{{ message.tags }}{% else %}alert-danger{% endif %}" role="alert">
                 {{ message }}
             </div>
         {% endfor %}
