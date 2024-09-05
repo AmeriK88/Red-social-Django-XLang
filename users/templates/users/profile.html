@@ -135,10 +135,14 @@
                         
                         <div class="collapse mt-3" id="comments-{{ post.pk }}">
                             {% for comment in post.comments.all %}
-                                <div class="mb-2">
-                                    <strong>{{ comment.user.username }}:</strong>
-                                    <p class="mb-1">{{ comment.content }}</p>
-                                    <small class="text-muted">{{ comment.created_at }}</small>
+                                <div class="d-flex mb-2">
+                                    <!-- Imagen de perfil del usuario que hizo el comentario -->
+                                    <img src="{{ comment.user.profile_picture.url }}" alt="{{ comment.user.username }}" class="miniature-comment-picture me-2">
+                                    <div>
+                                        <strong>{{ comment.user.username }}:</strong>
+                                        <p class="mb-1">{{ comment.content }}</p>
+                                        <small class="text-muted">{{ comment.created_at }}</small>
+                                    </div>
                                 </div>
                             {% endfor %}
                             
@@ -152,6 +156,7 @@
                             </form>
                         </div>
                     </div>
+
                 </div>
             </div>
         {% endfor %}
