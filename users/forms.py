@@ -31,7 +31,6 @@ class CustomAuthenticationForm(AuthenticationForm):
 
     def clean(self):
         cleaned_data = super().clean()
-        # Aquí puedes añadir validaciones adicionales si es necesario
         return cleaned_data
 
 class ProfileUpdateForm(forms.ModelForm):

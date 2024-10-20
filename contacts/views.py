@@ -21,12 +21,12 @@ def send_friend_request(request, user_id):
         messages.error(request, "You cannot send a friend request to yourself.")
         return redirect('search_users')
     
-    # Verificar si ya son amigos
+    # Verifica si ya son amigos
     if request.user.friends.filter(id=to_user.id).exists():
         messages.warning(request, "You are already friends with this user.")
         return redirect('search_users')
     
-    # Verificar si ya existe una solicitud de amistad en cualquier dirección
+    # Verifica si ya existe una solicitud de amistad en cualquier dirección
     if FriendshipRequest.objects.filter(
         Q(from_user=request.user, to_user=to_user) | 
         Q(from_user=to_user, to_user=request.user)
@@ -37,7 +37,6 @@ def send_friend_request(request, user_id):
         messages.success(request, f"Friend request sent to {to_user.username}!")
     
     return redirect('search_users')
-
 
 @login_required
 def accept_friend_request(request, request_id):
@@ -51,19 +50,18 @@ def accept_friend_request(request, request_id):
     request.user.friends.add(friend_request.from_user)
     friend_request.from_user.friends.add(request.user)
     
-    # Redirigir al perfil del usuario que aceptó la solicitud
     return redirect('profile', username=request.user.username)
 
 @login_required
 def contacts_list(request):
     user_contacts = request.user.friends.all()
-    # Obtener los contactos aceptados del usuario
+    # Obtener  contactos aceptados del user
     contacts = FriendshipRequest.objects.filter(
         (Q(from_user=request.user) | Q(to_user=request.user)),
         accepted=True
     ).select_related('from_user', 'to_user')
     
-    # Filtrar los contactos para excluir al usuario actual y organizar la lista
+    # Filtrar y excluir contacto actual
     user_contacts = []
     for contact in contacts:
         if contact.from_user != request.user:
@@ -77,7 +75,7 @@ def contacts_list(request):
 def reject_friend_request(request, request_id):
     friend_request = get_object_or_404(FriendshipRequest, id=request_id)
     
-    # Asegurar que la persona que se envió solicitud pueda rechazarla
+    # Opción para eliminar la petición
     if friend_request.to_user == request.user:
         friend_request.delete()
     
@@ -98,7 +96,6 @@ def confirm_remove_contact(request, contact_id):
         return redirect('contacts_list')
     
     if request.method == 'POST':
-        # Elimina el contacto y las solicitudes de amistad
         request.user.friends.remove(contact)
         contact.friends.remove(request.user)
         

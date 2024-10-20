@@ -10,7 +10,7 @@ class CustomUser(AbstractUser):
     about = models.TextField(blank=True, null=True)
     friends = models.ManyToManyField('self', blank=True, symmetrical=False, related_name='related_to')
     
-    # Añadir related_name para evitar conflictos con los modelos existentes
+    # related_name evita los conflictos con modelos existentes
     groups = models.ManyToManyField(
         'auth.Group',
         related_name='customuser_set',

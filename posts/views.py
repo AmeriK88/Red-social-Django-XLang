@@ -50,7 +50,7 @@ def delete_post(request, pk):
 def confirm_delete_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     
-    # Verifica si el usuario tiene permiso para eliminar la publicación
+    # Verifica si el user tiene permiso para eliminar la publicación
     if post.user != request.user:
         messages.error(request, "You do not have permission to delete this post.")
         return redirect('home')
