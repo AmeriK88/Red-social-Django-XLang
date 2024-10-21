@@ -14,11 +14,11 @@ body {
 
 .nav-link {
     font-size: 16px;
-    color: #ffffff !important; /* Ensure link color is white */
+    color: #ffffff !important; 
 }
 
 .nav-link:hover {
-    color: #e9ecef !important; /* Light color for hover effect */
+    color: #e9ecef !important; 
 }
 
 .navbar-brand {
@@ -27,7 +27,7 @@ body {
 
 /* Button Styles */
 .btn {
-    border-radius: 25px; /* Rounded buttons */
+    border-radius: 25px; 
     padding: 10px 20px;
 }
 
@@ -38,6 +38,37 @@ body {
 
 .btn-primary:hover {
     background-color: #0056b3;
+}
+
+/* Botones personalizados */
+.btn-sm-transparent {
+    padding: 5px 10px;
+    font-size: 0.875rem;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid #007bff; 
+    color: #007bff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-sm-transparent:hover {
+    background-color: #007bff; 
+    color: #ffffff;
+}
+
+.btn-sm-transparent-purple {
+    padding: 5px 10px;
+    font-size: 0.875rem;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid #6610f2;
+    color: #6610f2;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-sm-transparent-purple:hover {
+    background-color: #6610f2; 
+    color: #ffffff;
 }
 
 /* Card Styles */
@@ -129,7 +160,7 @@ body {
     height: 80px;
     border-radius: 50%;
     object-fit:cover;
-    background-color: #f0f0f0; /* color de fondo para mejorar la estética */
+    background-color: #f0f0f0; 
     background-size: cover;
     background-position: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -142,6 +173,25 @@ body {
     object-fit: cover;
 }
 
+/* Loading spinner */
+.loading-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease-out;
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
 
 /* Extra style responsive */
 @media (max-width: 992px) {
@@ -158,17 +208,17 @@ body {
     }
 
     .profile-picture {
-        max-width: 150px; /* Reducir el tamaño de la imagen */
-        margin-bottom: 10px; /* Añadir un margen inferior para separación */
+        max-width: 150px; 
+        margin-bottom: 10px; 
     }
 
     .card-body .row {
-        flex-direction: column; /* Forzar que las columnas se apilen verticalmente */
-        align-items: center; /* Centrar los elementos verticales */
+        flex-direction: column; 
+        align-items: center; 
     }
 
     .col-md-8 {
-        text-align: center; /* Centrar el texto en pantallas pequeñas */
+        text-align: center; 
     }
 
 }
