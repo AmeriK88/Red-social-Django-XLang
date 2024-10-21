@@ -12,6 +12,19 @@
             <p class="text-center alert-error">Are you sure you want to delete the following post?</p>
             <h5>{{ post.title }}</h5>
             <p>{{ post.content }}</p>
+
+             <!-- Mostrar imagen si está disponible -->
+             {% if post.image %}
+             <div class="image-container mb-3">
+                 <img src="{{ post.image.url }}" alt="Post Image" class="img-fluid rounded shadow-sm">
+             </div>
+             {% endif %}
+             
+             <!-- Mostrar enlace si está disponible -->
+             {% if post.link %}
+                 <a href="{{ post.link }}" target="_blank" class="btn btn-primary">View Link</a>
+             {% endif %} 
+
             <form method="post">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger">Yes, delete</button>
