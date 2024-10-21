@@ -69,7 +69,7 @@ def profile_view(request, username):
         if pending_requests.exists():
             messages.info(request, f"You have {pending_requests.count()} pending friend requests.")
 
-    posts = Post.objects.filter(user=user)  
+    posts = Post.objects.filter(user=user).order_by('-created_at')
 
     # Marca si el user ha dado like a las publicaciones 
     for post in posts:
