@@ -63,7 +63,7 @@ def profile_view(request, username):
     user = get_object_or_404(CustomUser, username=username)  
     pending_requests = None
 
-    # Propio perfil, muestra las solicitudes de amistad pendientes
+    # Propio perfil muestra las solicitudes 
     if user == request.user:
         pending_requests = FriendshipRequest.objects.filter(to_user=request.user, accepted=False)
         if pending_requests.exists():
@@ -71,7 +71,6 @@ def profile_view(request, username):
 
     posts = Post.objects.filter(user=user).order_by('-created_at')
 
-    # Marca si el user ha dado like a las publicaciones 
     for post in posts:
         post.user_has_liked = post.likes.filter(id=request.user.id).exists()
 
@@ -83,17 +82,17 @@ def profile_view(request, username):
     
     return render(request, 'users/profile.html', context)
 
-# Vista para editar el perfil del usuario
+# Vista editar
 @login_required
 def edit_profile(request, username):
     user = get_object_or_404(CustomUser, username=username)  
 
-    # Verifica que el usuario actual sea el dueño del perfil
+    # Verifica propiedad del perfil
     if request.user != user:
         messages.error(request, "You are not allowed to edit this profile.")
         return HttpResponseForbidden("You are not allowed to edit this profile.")
     
-    # Si se envía el formulario, intenta actualizar el perfil
+    # actualizar el perfil si se envía
     if request.method == 'POST':
         form = ProfileUpdateForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
