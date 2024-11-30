@@ -13,48 +13,141 @@
                     <h4 class="mb-0">Register</h4>
                 </div>
                 <div class="card-body">
+                    <!-- Mostrar errores generales -->
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {% for error in form.non_field_errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
+
+                        <!-- Username -->
                         <div class="mb-3">
                             <label for="id_username" class="form-label">Username</label>
-                            {{ form.username|add_class:"form-control" }}
+                            {% if form.username.errors %}
+                                {{ form.username|add_class:"form-control is-invalid" }}
+                            {% else %}
+                                {{ form.username|add_class:"form-control" }}
+                            {% endif %}
+                            {% if form.username.errors %}
+                                <div class="invalid-feedback">
+                                    {{ form.username.errors.0 }}
+                                </div>
+                            {% endif %}
                         </div>
+
+                        <!-- First Name -->
                         <div class="mb-3">
                             <label for="id_first_name" class="form-label">First Name</label>
-                            {{ form.first_name|add_class:"form-control" }}
+                            {% if form.first_name.errors %}
+                                {{ form.first_name|add_class:"form-control is-invalid" }}
+                            {% else %}
+                                {{ form.first_name|add_class:"form-control" }}
+                            {% endif %}
+                            {% if form.first_name.errors %}
+                                <div class="invalid-feedback">
+                                    {{ form.first_name.errors.0 }}
+                                </div>
+                            {% endif %}
                         </div>
+
+                        <!-- Last Name -->
                         <div class="mb-3">
                             <label for="id_last_name" class="form-label">Last Name</label>
-                            {{ form.last_name|add_class:"form-control" }}
+                            {% if form.last_name.errors %}
+                                {{ form.last_name|add_class:"form-control is-invalid" }}
+                            {% else %}
+                                {{ form.last_name|add_class:"form-control" }}
+                            {% endif %}
+                            {% if form.last_name.errors %}
+                                <div class="invalid-feedback">
+                                    {{ form.last_name.errors.0 }}
+                                </div>
+                            {% endif %}
                         </div>
+
+                        <!-- Phone -->
                         <div class="mb-3">
                             <label for="id_phone" class="form-label">Phone</label>
-                            {{ form.phone|add_class:"form-control" }}
+                            {% if form.phone.errors %}
+                                {{ form.phone|add_class:"form-control is-invalid" }}
+                            {% else %}
+                                {{ form.phone|add_class:"form-control" }}
+                            {% endif %}
+                            {% if form.phone.errors %}
+                                <div class="invalid-feedback">
+                                    {{ form.phone.errors.0 }}
+                                </div>
+                            {% endif %}
                         </div>
+
+                        <!-- Email -->
                         <div class="mb-3">
                             <label for="id_email" class="form-label">Email</label>
-                            {{ form.email|add_class:"form-control" }}
+                            {% if form.email.errors %}
+                                {{ form.email|add_class:"form-control is-invalid" }}
+                            {% else %}
+                                {{ form.email|add_class:"form-control" }}
+                            {% endif %}
+                            {% if form.email.errors %}
+                                <div class="invalid-feedback">
+                                    {{ form.email.errors.0 }}
+                                </div>
+                            {% endif %}
                         </div>
+
+                        <!-- Profile Picture -->
                         <div class="mb-3">
                             <label for="id_profile_picture" class="form-label">Profile Picture</label>
                             {{ form.profile_picture|add_class:"form-control" }}
                         </div>
+
+                        <!-- Languages to Learn -->
                         <div class="mb-3">
                             <label for="id_languages_to_learn" class="form-label">Languages to Learn</label>
                             {{ form.languages_to_learn|add_class:"form-control" }}
                         </div>
+
+                        <!-- Languages to Teach -->
                         <div class="mb-3">
                             <label for="id_languages_to_teach" class="form-label">Languages to Teach</label>
                             {{ form.languages_to_teach|add_class:"form-control" }}
                         </div>
+
+                        <!-- Password -->
                         <div class="mb-3">
                             <label for="id_password1" class="form-label">Password</label>
-                            {{ form.password1|add_class:"form-control" }}
+                            {% if form.password1.errors %}
+                                {{ form.password1|add_class:"form-control is-invalid" }}
+                            {% else %}
+                                {{ form.password1|add_class:"form-control" }}
+                            {% endif %}
+                            {% if form.password1.errors %}
+                                <div class="invalid-feedback">
+                                    {{ form.password1.errors.0 }}
+                                </div>
+                            {% endif %}
                         </div>
+
+                        <!-- Confirm Password -->
                         <div class="mb-3">
                             <label for="id_password2" class="form-label">Confirm Password</label>
-                            {{ form.password2|add_class:"form-control" }}
+                            {% if form.password2.errors %}
+                                {{ form.password2|add_class:"form-control is-invalid" }}
+                            {% else %}
+                                {{ form.password2|add_class:"form-control" }}
+                            {% endif %}
+                            {% if form.password2.errors %}
+                                <div class="invalid-feedback">
+                                    {{ form.password2.errors.0 }}
+                                </div>
+                            {% endif %}
                         </div>
+
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">Register</button>
                         </div>

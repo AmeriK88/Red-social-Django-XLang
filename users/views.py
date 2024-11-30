@@ -13,16 +13,19 @@ from django.contrib import messages
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST, request.FILES)
-        if form.is_valid():  
+        if form.is_valid():
             user = form.save()
-            login(request, user)  
-            messages.success(request, "Registration successful. Welcome, {}!".format(user.username))
-            return redirect('home')  
+            login(request, user)
+            messages.success(request, f"Registration successful. Welcome, {user.username}!")
+            return redirect('home')
         else:
-            messages.error(request, "There was an error with your registration. Please check the form and try again.")
+            # Depuración: verifica los errores en consola
+            print("Errores del formulario:", form.errors)
+            messages.error(request, "Please correct the errors below.")
     else:
-        form = CustomUserCreationForm()  
+        form = CustomUserCreationForm()
     return render(request, 'users/register.html', {'form': form})
+
 
 # Vista para el inicio de sesión
 def login_view(request):
