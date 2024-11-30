@@ -4,7 +4,9 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h2 class="card-title p-3 bg-custom text-white rounded shadow-sm">My Contacts</h2>
+    <h2 class="card-title p-3 bg-custom text-white rounded shadow-sm">
+        My Contacts ({{ total_contacts }})
+    </h2>
     
     {% if contacts %}
         <div class="row">

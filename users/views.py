@@ -69,6 +69,7 @@ def profile_view(request, username):
         if pending_requests.exists():
             messages.info(request, f"You have {pending_requests.count()} pending friend requests.")
 
+    total_friends = user.friends.count()
     posts = Post.objects.filter(user=user).order_by('-created_at')
 
     for post in posts:
@@ -78,6 +79,7 @@ def profile_view(request, username):
         'user': user,
         'pending_requests': pending_requests,
         'posts': posts,
+        'total_friends': total_friends,
     }
     
     return render(request, 'users/profile.html', context)
