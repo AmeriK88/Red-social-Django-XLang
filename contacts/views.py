@@ -54,22 +54,28 @@ def accept_friend_request(request, request_id):
 
 @login_required
 def contacts_list(request):
+    # Obtener amigos directamente de la relación friends
     user_contacts = request.user.friends.all()
-    # Obtener  contactos aceptados del user
-    contacts = FriendshipRequest.objects.filter(
+    total_contacts = user_contacts.count()
+
+    # Obtener solicitudes de amistad aceptadas
+    friendship_requests = FriendshipRequest.objects.filter(
         (Q(from_user=request.user) | Q(to_user=request.user)),
         accepted=True
     ).select_related('from_user', 'to_user')
     
-    # Filtrar y excluir contacto actual
-    user_contacts = []
-    for contact in contacts:
+    # Filtrar y excluir al usuario actual
+    accepted_contacts = []
+    for contact in friendship_requests:
         if contact.from_user != request.user:
-            user_contacts.append(contact.from_user)
+            accepted_contacts.append(contact.from_user)
         else:
-            user_contacts.append(contact.to_user)
+            accepted_contacts.append(contact.to_user)
     
-    return render(request, 'contacts/contacts_list.html', {'contacts': user_contacts})
+    return render(request, 'contacts/contacts_list.html', {
+        'contacts': accepted_contacts,
+        'total_contacts': total_contacts
+    })
 
 @login_required
 def reject_friend_request(request, request_id):
