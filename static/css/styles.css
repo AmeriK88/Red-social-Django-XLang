@@ -86,6 +86,37 @@ body {
     padding: 15px;
 }
 
+/* Estilo general para las filas de información */
+.card .bg-light {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card .bg-light i {
+    font-size: 1.5rem;
+    color: #007bff;
+    margin-right: 1rem;
+}
+
+.card .bg-light p {
+    margin: 0;
+    color: #495057;
+}
+
+.card .bg-light strong {
+    color: #343a40;
+}
+
+.card .bg-light:hover {
+    background-color: #e9ecef;
+    transform: scale(1.02);
+    transition: background-color 0.3s, transform 0.3s ease;
+}
+
 .card-footer {
     background-color: #f1f1f1;
     border-top: none;
@@ -146,13 +177,10 @@ body {
     color: #6c5b9a;
 }
 
-/* Profile pic style */
-.profile-picture {
-    max-width: 180px;
-    max-height: 180px;
+.profile-banner img {
+    border-radius: 0;
     object-fit: cover;
-    border-radius: 25px;
-    border: 1px solid black;
+    max-height: 250px; /* Ajusta según tus necesidades */
 }
 
 .miniature-profile-picture {
