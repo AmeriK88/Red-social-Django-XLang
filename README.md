@@ -43,5 +43,4 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local:
 ## Imágenes
 ![Captura de pantalla 2024-12-01 003434](https://github.com/user-attachments/assets/5dfebd99-5a70-4c04-b16f-b2e0d0cd807c)
 ![Captura de pantalla 2024-12-01 003417](https://github.com/user-attachments/assets/4507fbe3-9459-457e-b6e8-35d6a3c29b68)
-![Captura de pantalla 2024-11-30 233425](https://github.com/user-attachments/assets/b8f24c82-3933-4b26-a8b6-753eefa143b9)
 
